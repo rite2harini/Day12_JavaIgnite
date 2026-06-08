@@ -1,37 +1,48 @@
-/*
-Student Result Archive
+public class StudentResultArchive {
+	public static void main(String[] args) {
 
-Create:
+	     GraduateStudent s1 =
+	             new GraduateStudent(101, "sumi", 88);
 
-Student
-│
-| - GraduateStudent
+	     // Overloading
+	     s1.displayResult();
+	     s1.displayResult("Semester 4");
 
-Requirements:
+	     // Overriding
+	     s1.calculateGrade();
 
-Override:
+	     // File Handling
+	     try {
+	         FileOutputStream fos =
+	                 new FileOutputStream("results.txt");
 
-calculateGrade()
+	         String data =
+	                 "Roll No: " + s1.rollNo +
+	                 "\nName: " + s1.name +
+	                 "\nMarks: " + s1.marks;
 
-for GraduateStudent.
+	         fos.write(data.getBytes());
+	         fos.close();
 
-Overloading:
+	         System.out.println("\nResult saved to file.");
 
-Create:
+	         // Read File
+	         FileInputStream fis =
+	                 new FileInputStream("results.txt");
 
-displayResult()
+	         int ch;
 
-displayResult(String semester)
+	         System.out.println("\nFile Contents:");
+	         while ((ch = fis.read()) != -1) {
+	             System.out.print((char) ch);
+	         }
 
-Use:
+	         fis.close();
 
-FileOutputStream
+	     } catch (IOException e) {
+	         System.out.println("File Error: " + e.getMessage());
+	     }
+	 }
+	}
 
-to save student result data.
 
-Use:
-
-FileInputStream
-
-to read and display the data.
-  */
