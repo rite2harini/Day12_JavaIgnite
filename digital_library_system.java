@@ -1,43 +1,47 @@
-/*
-Digital Library System
+public class DigitalLibrarySystem {
+	public static void main(String[] args) {
 
-Create:
+	     EBook b1 = new EBook(101, "Java Programming", "499.50");
+	     PrintedBook b2 = new PrintedBook(102, "Data Structures", "650.75");
 
-Book
-│
-| -  EBook
-│
-| - PrintedBook
+	     // Method Overriding
+	     b1.showBookType();
+	     b2.showBookType();
 
-Requirements:
+	     // Method Overloading
+	     b1.searchBook(101);
+	     b2.searchBook("Data Structures");
 
-Override:
+	     // File Handling
+	     try {
+	         FileWriter fw = new FileWriter("library.txt");
 
-showBookType()
+	         fw.write("ID: " + b1.id + ", Title: " + b1.title +
+	                 ", Price: " + b1.price + "\n");
 
-for each child class.
+	         fw.write("ID: " + b2.id + ", Title: " + b2.title +
+	                 ", Price: " + b2.price + "\n");
 
-Overloading:
+	         fw.close();
 
-Create:
+	         System.out.println("\nBook details stored in library.txt");
 
-searchBook(int id)
+	         // Reading from file
+	         BufferedReader br = new BufferedReader(
+	                 new FileReader("library.txt"));
 
-searchBook(String title)
+	         String line;
 
-Wrapper Class Requirement:
+	         System.out.println("\nReading File Contents:");
+	         while ((line = br.readLine()) != null) {
+	             System.out.println(line);
+	         }
 
-Convert:
+	         br.close();
 
-Book Price (String)
+	     } catch (IOException e) {
+	         System.out.println("File Error: " + e.getMessage());
+	     }
+	 }
+	}
 
-into numeric value using Wrapper Classes.
-
-File Handling:
-
-Store all book details in:
-
-library.txt
-
-and read them back.
-*/
