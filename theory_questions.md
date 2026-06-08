@@ -44,7 +44,7 @@ When would you choose one over the other?
 Explain Inheritance using a real-world example.
 
 How does inheritance help reduce code duplication?
-
+it helps to reduce code dupliucation as the common parts the common codes is written in parent folder and which the codes will be diffred but will remain in same context can be written in the child code and the same part is not required to write it again as it 
 
 Important Interview Question - 
 
@@ -64,8 +64,9 @@ Animal a = new Dog();
 a.sound();
 
 What will be the output?
-
+Bark
 Explain why.
-
+here we call the object new dog so the codes which is below the class dog will be executed.
+here we called the object dog which is inside the animal class
 
 
