@@ -42,9 +42,9 @@ When would you choose one over the other?
 
 
 Explain Inheritance using a real-world example.
-
+it usually means grandparents -> parents -> children....nbest exampe is genes we have ie we have inherited from 
 How does inheritance help reduce code duplication?
-it helps to reduce code dupliucation as the common parts the common codes is written in parent folder and which the codes will be diffred but will remain in same context can be written in the child code and the same part is not required to write it again as it 
+it helps to reduce code dupliucation as the common parts the common codes is written in parent folder and which the codes will be diffred but will remain in same context can be written in the child code and the same part is not required to write it again as it is present in the parent class so it will inherit into the child classes.
 
 Important Interview Question - 
 
