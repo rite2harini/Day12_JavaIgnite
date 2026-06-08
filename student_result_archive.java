@@ -1,37 +1,101 @@
-/*
-Student Result Archive
+import java.io.*;
+class Student {
+ int rollNo;
+ String name;
+ int marks;
 
-Create:
+ Student(int rollNo, String name, int marks) {
+     this.rollNo = rollNo;
+     this.name = name;
+     this.marks = marks;
+ }
 
-Student
-│
-| - GraduateStudent
+ void calculateGrade() {
+     if (marks >= 80)
+         System.out.println("Grade: A");
+     else if (marks >= 60)
+         System.out.println("Grade: B");
+     else
+         System.out.println("Grade: C");
+ }
 
-Requirements:
 
-Override:
+ void displayResult() {
+     System.out.println("Roll No: " + rollNo);
+     System.out.println("Name: " + name);
+     System.out.println("Marks: " + marks);
+ }
 
-calculateGrade()
+ void displayResult(String semester) {
+     System.out.println("Semester: " + semester);
+     System.out.println("Roll No: " + rollNo);
+     System.out.println("Name: " + name);
+     System.out.println("Marks: " + marks);
+ }
+}
 
-for GraduateStudent.
+class GraduateStudent extends Student {
 
-Overloading:
+ GraduateStudent(int rollNo, String name, int marks) {
+     super(rollNo, name, marks);
+ }
 
-Create:
+ @Override
+ void calculateGrade() {
+     if (marks >= 85)
+         System.out.println("Grade: A+");
+     else if (marks >= 70)
+         System.out.println("Grade: A");
+     else if (marks >= 60)
+         System.out.println("Grade: B");
+     else
+         System.out.println("Grade: C");
+ }
+}
 
-displayResult()
+public class StudentResultArchive {
+	 public static void main(String[] args) {
 
-displayResult(String semester)
+	        GraduateStudent s1 =
+	                new GraduateStudent(101, "Anju", 88);
 
-Use:
+	     
+	        s1.displayResult();
+	        s1.displayResult("Semester 4");
 
-FileOutputStream
+	     
+	        s1.calculateGrade();
 
-to save student result data.
+	     
+	        try {
+	            FileOutputStream fos =
+	                    new FileOutputStream("results.txt");
 
-Use:
+	            String data =
+	                    "Roll No: " + s1.rollNo +
+	                    "\nName: " + s1.name +
+	                    "\nMarks: " + s1.marks;
 
-FileInputStream
+	            fos.write(data.getBytes());
+	            fos.close();
 
-to read and display the data.
-  */
+	            System.out.println("\nResult saved to file.");
+
+	           
+	            FileInputStream fis =
+	                    new FileInputStream("results.txt");
+
+	            int ch;
+
+	            System.out.println("\nFile Contents:");
+	            while ((ch = fis.read()) != -1) {
+	                System.out.print((char) ch);
+	            }
+
+	            fis.close();
+
+	        } catch (IOException e) {
+	            System.out.println("File Error: " + e.getMessage());
+	        }
+	    }
+	}
