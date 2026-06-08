@@ -1,36 +1,47 @@
-/*
-Hospital Employee Management System
+public class HospitalEmployeeManagementSystem {
+	public static void main(String[] args) {
 
-Create the following hierarchy:
+	     Doctor d1 = new Doctor(101, "Rahul", "Cardiologist");
+	     Nurse n1 = new Nurse(201, "Priya", "Night");
 
-Employee
-│
-| -Doctor
-│
-| -Nurse
-Requirements:
-Employee should contain:
-employeeId
-name
-Doctor should contain:
-specialization
-Nurse should contain:
-shift
+	     d1.displayRole();
+	     n1.displayRole();
 
-Polymorphism:
+	     // File Handling
+	     try {
+	         FileWriter fw = new FileWriter("employees.txt");
 
-Override:
+	         fw.write("Doctor Details\n");
+	         fw.write("ID: " + d1.employeeId +
+	                  ", Name: " + d1.name +
+	                  ", Specialization: " + d1.specialization + "\n");
 
-displayRole() for Doctor and Nurse.
+	         fw.write("Nurse Details\n");
+	         fw.write("ID: " + n1.employeeId +
+	                  ", Name: " + n1.name +
+	                  ", Shift: " + n1.shift + "\n");
 
-File Handling:
+	         fw.close();
 
-Save all employee details into:
+	         System.out.println("\nEmployee details saved to employees.txt");
 
-employees.txt
+	         // Reading File
+	         FileReader fr = new FileReader("employees.txt");
+	         int ch;
 
-using FileWriter.
+	         System.out.println("\nContents of employees.txt:");
+	         while ((ch = fr.read()) != -1) {
+	             System.out.print((char) ch);
+	         }
 
-Read and display contents using FileReader.
+	         fr.close();
 
-*/
+	     } catch (IOException e) {
+	         System.out.println("File Error: " + e.getMessage());
+	     }
+	 }
+	}
+
+
+
+
