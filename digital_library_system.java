@@ -1,43 +1,112 @@
-/*
-Digital Library System
+import java.io.*;
 
-Create:
+//Parent Class
+class Book {
+ int id;
+ String title;
+ double price;
 
-Book
-│
-| -  EBook
-│
-| - PrintedBook
+ Book(int id, String title, String priceStr) {
+     this.id = id;
+     this.title = title;
 
-Requirements:
+     // Wrapper Class: String to double
+     this.price = Double.parseDouble(priceStr);
+ }
 
-Override:
+ void showBookType() {
+     System.out.println("General Book");
+ }
 
-showBookType()
+ // Overloaded Methods
+ void searchBook(int id) {
+     if (this.id == id) {
+         System.out.println("Book Found: " + title);
+     } else {
+         System.out.println("Book Not Found");
+     }
+ }
 
-for each child class.
+ void searchBook(String title) {
+     if (this.title.equalsIgnoreCase(title)) {
+         System.out.println("Book Found: " + this.title);
+     } else {
+         System.out.println("Book Not Found");
+     }
+ }
+}
 
-Overloading:
+//Child Class 1
+class EBook extends Book {
 
-Create:
+ EBook(int id, String title, String priceStr) {
+     super(id, title, priceStr);
+ }
 
-searchBook(int id)
+ @Override
+ void showBookType() {
+     System.out.println("Book Type: E-Book");
+ }
+}
 
-searchBook(String title)
+//Child Class 2
+class PrintedBook extends Book {
 
-Wrapper Class Requirement:
+ PrintedBook(int id, String title, String priceStr) {
+     super(id, title, priceStr);
+ }
 
-Convert:
+ @Override
+ void showBookType() {
+     System.out.println("Book Type: Printed Book");
+ }
+}
 
-Book Price (String)
+public class DigitalLibrarySystem {
+	public static void main(String[] args) {
 
-into numeric value using Wrapper Classes.
+        EBook b1 = new EBook(101, "Java Programming", "499.50");
+        PrintedBook b2 = new PrintedBook(102, "Data Structures", "650.75");
 
-File Handling:
+        // Method Overriding
+        b1.showBookType();
+        b2.showBookType();
 
-Store all book details in:
+        // Method Overloading
+        b1.searchBook(101);
+        b2.searchBook("Data Structures");
 
-library.txt
+        // File Handling
+        try {
+            FileWriter fw = new FileWriter("library.txt");
 
-and read them back.
-*/
+            fw.write("ID: " + b1.id + ", Title: " + b1.title +
+                    ", Price: " + b1.price + "\n");
+
+            fw.write("ID: " + b2.id + ", Title: " + b2.title +
+                    ", Price: " + b2.price + "\n");
+
+            fw.close();
+
+            System.out.println("\nBook details stored in library.txt");
+
+            // Reading from file
+            BufferedReader br = new BufferedReader(
+                    new FileReader("library.txt"));
+
+            String line;
+
+            System.out.println("\nReading File Contents:");
+            while ((line = br.readLine()) != null) {
+                System.out.println(line);
+            }
+
+            br.close();
+
+        } catch (IOException e) {
+            System.out.println("File Error: " + e.getMessage());
+        }
+    }
+
+}
+
